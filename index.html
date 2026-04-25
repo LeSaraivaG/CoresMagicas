@@ -1,0 +1,160 @@
+﻿<!DOCTYPE html>
+<html lang="pt">
+<head>
+
+ <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>Cores Mágicas</title>
+<link rel="manifest" href="manifest.json">    
+   <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/ico" href="Coca-3.ico">
+    <link rel="apple-touch-icon" href="Coca-3.ico>
+    <meta name="theme-color" content="#4B0082">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Cores Mágicas">
+
+</head>
+<body>
+    <div class="game-container">
+
+        <!-- Barra superior com botões estilizados (iguais aos de Compra/Venda) -->
+        <div class="top-bar">
+            <button id="btnIniciar" class="action-btn small-btn iniciar-btn">▶️ Iniciar</button>
+            <button id="btnPausar" class="action-btn small-btn pausar-btn">⏸️ Pausar</button>
+            <button id="btnReiniciar" class="action-btn small-btn reiniciar-btn">🔄 Reiniciar</button>
+            <button id="btnZerar" class="action-btn small-btn zerar-btn">🗑️ Zerar</button>
+               <button id="btnTelaCheia" class="action-btn small-btn tela-btn">🖥️ Tela Cheia</button>
+        </div>
+
+        <!-- Título -->
+        <div class="title-area">
+            <h1>CORES MÁGICAS</h1>
+        </div>
+
+        <!-- Status -->
+        <div class="status-area">
+            <div id="status1" class="status-line"></div>
+            <div id="status2" class="status-line">Script parado. Clique em Iniciar!</div>
+        </div>
+
+ <!-- Wrapper para área colorida + estrelas (sem position absolute) -->
+    <div class="color-area-wrapper">
+        <div class="secret-stars-left">
+            <div class="star">*</div>
+            <div class="star" id="secretLifeBtn">*</div>
+            <div class="star">*</div>
+        </div>
+        <div id="areaCor" class="color-area"></div>
+        <div class="secret-stars-right">
+            <div class="star">*</div>
+            <div class="star">*</div>
+            <div class="star">*</div>
+        </div>
+    </div> 
+
+        <!-- Barra de progresso -->
+        <div class="progress-area">
+            <div class="progress-bg">
+                <div id="progressoCores" class="progress-fill" style="width:0%"></div>
+            </div>
+            <div id="textoProgresso" class="progress-percent">0%</div>
+        </div>
+       
+        <!-- Painel de Informações: Pontos, Vidas, Fase, Cor atual -->
+        <div class="info-panel">
+            <div>🏆 Pontos: <span id="textoPontuacao">0</span></div>
+            <div>❤️ Vidas: <span id="textoVidas">❤️❤️❤️</span></div>
+            <div>🌀 Fase: <span id="textoFase">1</span></div>
+           <div>🎨 Cor: <span id="textoCor">---</span></div> 
+        </div>
+
+        <!-- Animações (emojis + GIF) -->
+        <div class="animations">
+            <div id="indicador1" class="emoji-anim">🌿</div>
+            <div id="indicador2" class="emoji-anim">🐉</div>
+            <img id="gifAnimado" src="Darwin.gif" alt="gif" class="gif-anim">
+            <div id="indicador3" class="emoji-anim">❤️</div>
+       <div id="indicador5" class="emoji-anim">👉🏻</div>
+   <div id="btnRegras" class="regras-btn">Regras</div>
+</div>
+
+        <!-- Fase info - Nome da fase e ícone -->
+        <div class="fase-info">
+            <img id="faseIcone" src="Fase1.png" alt="Ícone" class="fase-icon">
+            <div id="nomeFase" class="fase-nome">Floresta Verde</div>
+        </div>
+
+        <!-- Botões de ação principais (Verde/Fucsia) -->
+        <div class="touch-buttons">
+            <button id="btnPgUp" class="action-btn up-btn">🟢 Verde (PgUp)</button>
+            <button id="btnPgDn" class="action-btn dn-btn">🔴 Fucsia (PgDn)</button>
+        </div>
+
+        <!-- Status extras -->
+        <div id="status3" class="extra-status"></div>
+        <div id="status4" class="extra-status"></div>
+        <div id="status5" class="extra-status"></div>
+    </div>
+
+    <!-- Modal (popup) para o Regras -->
+<div id="RegrasModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <div id="modal-body"></div>
+    </div>
+</div>
+
+<!-- Conteúdo das regras (oculto) -->
+<div id="regras-content" style="display:none;">
+<!-- ===============================================================  -->
+    <h1>🔥 CORES MÁGICAS 🔥</h1> 
+     <div class="dica">
+       <strong> ===============================</p><p>
+       <p>💫 <strong>Versão:</strong>3.0 (Beta)</p>       
+        <p>💎 <strong>O joguinho tem 5 fases:
+        </strong> 1 - 🌿 Floresta Verde;
+2 - 🌸 Jardim Feliz;
+3 - 🎉 Bosque Mágico;
+4 - 🍀 Vale das Flores; e
+5 - 🚀 Desafio Final.</p>
+     <strong> ----------------------------------------</p>
+     💹 <strong>Objetivo:</p>
+     
+     </strong> Fazer o máximo de pontos para passar de fase;
+50, passa para a segunda; 100 passa para a terceira; 200 passa para a quarta; e 300 passa para a Quinta.</p>
+     <strong> ----------------------------------------</p>
+     🔍  <strong>Como jogar:</p>
+     
+      </strong>Ao aparecer a cor verde claro acionar a tecla PgUp;
+      
+      Ao aparecer a cor fucsia, acionar a tecla PgDn.
+      
+      </strong> - Conforme vai avançando nas fases, a apesentação (aleatória) das cores vai acelerando.</p>
+      
+      </strong> 🎯 Ganhe <span style="color:#FFD700;">10 pontos</span> por acerto</p>
+      
+      </strong> 🎯 Você tem <span style="color:#FFD700;">3 vidas.</span> Perde uma vida ao errar</p>
+      
+      </strong> 🎯 A cada <span style="color:#FFD700;">100 pontos</span>, ganha mais uma vida</p>
+     <strong> ----------------------------------------</p>
+     <p>🔄 <strong> Botões:</p>
+     <p>✅  </strong> Reiniciar: recomeça do zero;</p>
+     <p>✅  </strong> Zerar: zera apenas os pontos (mantém fase e vidas);</p>
+     <p>✅  </strong> e em algum lugar, o botão secreto 🎯 para vidas extras (até o máximo de cinco).</p>
+        </strong> =======================</p>
+      <p>📌  </strong> Obs.:
+O joguinho ainda está em desenvolvimento, portanto, quaisquer informações sobre o desempenho, ou possíveis falhas, bugs, etc. serão bem vindas.</p>
+        </strong> =======================</p>
+   
+        <p>👨‍💻 Criado por: @LeSaraiva</p>
+    </strong> 2026</p>
+    </div>
+<!-- ===============================================================  -->        
+</div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+<!-- =========================================== -->
