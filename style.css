@@ -46,7 +46,6 @@ body {
 .pausar-btn { background-color: #f57c00; }
 .reiniciar-btn { background-color: #1565c0; }
 .zerar-btn { background-color: #6a1b9a; }
-/*.sair-btn { background-color: #c62828; } */
 .tela-btn { background-color: #00838f; }
 
 /* Ajuste do layout da top-bar para mobile */
@@ -63,7 +62,7 @@ body {
 .regras-btn {
    color: white; 
     font-size: 0.8rem; 
-/* } */
+
     cursor: pointer;
     background-color: rgba( 0, 0, 0, 0.4);
     border-radius: 40px;
