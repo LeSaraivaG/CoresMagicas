@@ -30,7 +30,30 @@ const btnZerar = document.getElementById('btnZerar');
 const btnTelaCheia = document.getElementById('btnTelaCheia');
 const btnPgUp = document.getElementById('btnPgUp');
 const btnPgDn = document.getElementById('btnPgDn');
+//......................................................................................
+/*
+const overlay = document.getElementById('fullscreen-overlay');
+if (overlay) {
+    overlay.addEventListener('click', function() {
+        const elem = document.documentElement;
+        if (elem.requestFullscreen) elem.requestFullscreen();
+        else if (elem.webkitRequestFullscreen) elem.webkitRequestFullscreen();
+        overlay.style.display = 'none';
+        // Opcional: já inicia o jogo automaticamente
+        iniciarJogo();
+    });
+}
+//.......................................................................................
 
+function ativarTelaCheia() {
+    const elem = document.documentElement;
+    if (elem.requestFullscreen) {
+        elem.requestFullscreen();
+    } else if (elem.webkitRequestFullscreen) {
+        elem.webkitRequestFullscreen();
+    }
+}
+*/
 //00000000000000000000000000000000
 // Para o botão Regras
 const regrasBtn = document.getElementById('btnRegras'); 
@@ -192,7 +215,13 @@ function atualizarInterface() {
 
     // Game over
     if (vidas <= 0) {
-        if (timerCor) clearInterval(timerCor);
+//.............................................................................................
+ const novoRecorde = salvarRecorde(pontuacao);
+    if (novoRecorde) {
+        alert(`🎉 PARABÉNS! NOVO RECORDE: ${pontuacao} pontos! 🎉`);
+    }
+//.............................................................................................    
+    if (timerCor) clearInterval(timerCor);
         status4.innerText = 'Fim de jogo!';
         status5.innerText = `Você fez ${pontuacao} pontos. Parabéns!`;
         pontuacao = 0;
@@ -369,7 +398,19 @@ function pararAnimacoes() {
 
 // ==================== CONTROLES DO JOGO ====================
 function iniciarJogo() {
-    if (timerCor) clearInterval(timerCor);
+//..................................................................................
+    // Ativa tela cheia (se ainda não estiver)
+    const elem = document.documentElement;
+    if (elem.requestFullscreen) {
+        elem.requestFullscreen();
+    } else if (elem.webkitRequestFullscreen) { // Safari
+        elem.webkitRequestFullscreen();
+   //°  }
+
+    // ... resto do código do iniciarJogo (pontuação, timers, etc.)
+}
+//.................................................................................. 
+ if (timerCor) clearInterval(timerCor);
     scriptAtivo = true;
     scriptPausado = false;
     status1.innerText = 'Jogo iniciado.';
@@ -453,13 +494,25 @@ function sairJogo() {
     status1.innerText = 'Script encerrado.';
     status2.innerText = 'Feche a página para sair completamente.';
 }
-
+//.................................................................................
+//function toggleTelaCheia() {
+function telaCheia() {  
+    if (document.fullscreenElement) {
+        document.exitFullscreen();
+        // Ao sair da tela cheia, mostra o recorde (opcional)
+        mostrarRecorde();
+    } else {
+        document.documentElement.requestFullscreen();
+    }
+}
+//.................................................................................
+/*
 function telaCheia() {
     if (document.documentElement.requestFullscreen) {
         document.documentElement.requestFullscreen();
     }
 }
-
+*/
 function ganharVidaExtra() {
     if (vidas < 5) {
         vidas++;
@@ -472,7 +525,28 @@ function ganharVidaExtra() {
         setTimeout(() => { if (status3.innerText === 'Vidas no máximo!') status3.innerText = ''; }, 800);
     }
 }
+//..........................................................................................................................
+// Salva a maior pontuação no navegador
+function salvarRecorde(pontos) {
+    let recorde = localStorage.getItem('recordeCores') || 0;
+    if (pontos > recorde) {
+        localStorage.setItem('recordeCores', pontos);
+        return true; // novo recorde
+    }
+    return false;
+}
 
+// Lê o recorde salvo
+function obterRecorde() {
+    return localStorage.getItem('recordeCores') || 0;
+}
+
+// Mostra o recorde num alerta ou modal (pode ser um modal simples)
+function mostrarRecorde() {
+    const recorde = obterRecorde();
+    alert(`🏆 MAIOR PONTUAÇÃO: ${recorde} pontos!`);
+}
+//..........................................................................................................................
 // ==================== EVENTOS ====================
 
 btnIniciar.addEventListener('click', iniciarJogo);
