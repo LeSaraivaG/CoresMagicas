@@ -16,19 +16,21 @@
 
 </head>
 <body>
- <!--
- <div id="fullscreen-overlay" style="position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.5); z-index: 9999; display: flex; justify-content: center; align-items: center; color: white; font-size: 2rem; backdrop-filter: blur(5px);">
+<!--  
+  <div id="fullscreen-overlay" style="position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.5); z-index: 9999; display: flex; justify-content: center; align-items: center; color: white; font-size: 2rem; backdrop-filter: blur(5px);">
     Toque para iniciar em tela cheia
-</div>  -->
+</div>
+-->
     <div class="game-container">
 
-        <!-- Barra superior com botões estilizados -->
+        <!-- Barra superior com botões estilizados (iguais aos de Compra/Venda) -->
         <div class="top-bar">
             <button id="btnIniciar" class="action-btn small-btn iniciar-btn">▶️ Iniciar</button>
             <button id="btnPausar" class="action-btn small-btn pausar-btn">⏸️ Pausar</button>
             <button id="btnReiniciar" class="action-btn small-btn reiniciar-btn">🔄 Reiniciar</button>
             <button id="btnZerar" class="action-btn small-btn zerar-btn">🗑️ Zerar</button>
-               <button id="btnTelaCheia" class="action-btn small-btn tela-btn">🖥️ Tela Placar</button>   <!-- Tela Cheia  -->
+               <button id="btnTelaCheia" class="action-btn small-btn tela-btn">🖥️ Tela Placar</button>
+               <button id="TelaCheia">Sair da tela cheia</button>
         </div>
 
         <!-- Título -->
@@ -100,7 +102,17 @@
         <div id="status4" class="extra-status"></div>
         <div id="status5" class="extra-status"></div>
     </div>
-
+<!-- ....................................................................................... -->
+ <!-- Modal (popup) para o Recordes -->
+<div id="recordeModal" class="modal" style="display:none;">
+    <div class="modal-content" style="text-align:center;">
+        <span id="closeRecordeModal" class="close-modal">&times;</span>  <!-- ID único -->
+        <h2>🏆 RECORDE ATUAL 🏆</h2>
+        <p id="recordeValor" style="font-size: 2rem; color: gold;">0</p>
+        <button id="fecharRecordeBtn" class="action-btn">Fechar</button>   <!-- ID único -->
+    </div>
+</div>
+<!-- ....................................................................................... -->
     <!-- Modal (popup) para o Regras -->
 <div id="RegrasModal" class="modal">
     <div class="modal-content">
