@@ -26,7 +26,6 @@ const btnIniciar = document.getElementById('btnIniciar');
 const btnPausar = document.getElementById('btnPausar');
 const btnReiniciar = document.getElementById('btnReiniciar');
 const btnZerar = document.getElementById('btnZerar');
-//const btnSair = document.getElementById('btnSair');
 const btnTelaCheia = document.getElementById('btnTelaCheia');
 const btnPgUp = document.getElementById('btnPgUp');
 const btnPgDn = document.getElementById('btnPgDn');
@@ -40,7 +39,7 @@ if (overlay) {
         else if (elem.webkitRequestFullscreen) elem.webkitRequestFullscreen();
         overlay.style.display = 'none';
         // Opcional: já inicia o jogo automaticamente
-        iniciarJogo();
+     //°°°    iniciarJogo();
     });
 }
 //.......................................................................................
@@ -113,7 +112,6 @@ const secretBtn = document.getElementById('secretLifeBtn');
 if (secretBtn) {
     secretBtn.addEventListener('click', ganharVidaExtra);
 }
-
 
 // ==================== VARIÁVEIS GLOBAIS ====================
 let scriptAtivo = false;
@@ -334,7 +332,7 @@ function processarAcerto(tipo) {
     if (btn) {
         btn.style.transform = 'scale(0.95)';
         const originalBg = btn.style.backgroundColor;
-        btn.style.backgroundColor = acertou ? '#81c784' : '#e57373';
+        btn.style.backgroundColor = acertou ? '#2e7d00;' : '#9c2700';  // '#81c784' : '#e57373';
         setTimeout(() => {
             btn.style.transform = '';
             btn.style.backgroundColor = originalBg;
