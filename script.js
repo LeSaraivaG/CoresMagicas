@@ -26,33 +26,11 @@ const btnIniciar = document.getElementById('btnIniciar');
 const btnPausar = document.getElementById('btnPausar');
 const btnReiniciar = document.getElementById('btnReiniciar');
 const btnZerar = document.getElementById('btnZerar');
+//const btnSair = document.getElementById('btnSair');
 const btnTelaCheia = document.getElementById('btnTelaCheia');
 const btnPgUp = document.getElementById('btnPgUp');
 const btnPgDn = document.getElementById('btnPgDn');
-//......................................................................................
-/*
-const overlay = document.getElementById('fullscreen-overlay');
-if (overlay) {
-    overlay.addEventListener('click', function() {
-        const elem = document.documentElement;
-        if (elem.requestFullscreen) elem.requestFullscreen();
-        else if (elem.webkitRequestFullscreen) elem.webkitRequestFullscreen();
-        overlay.style.display = 'none';
-        // Opcional: já inicia o jogo automaticamente
-     //°°°    iniciarJogo();
-    });
-}
-//.......................................................................................
 
-function ativarTelaCheia() {
-    const elem = document.documentElement;
-    if (elem.requestFullscreen) {
-        elem.requestFullscreen();
-    } else if (elem.webkitRequestFullscreen) {
-        elem.webkitRequestFullscreen();
-    }
-}
-*/
 //00000000000000000000000000000000
 // Para o botão Regras
 const regrasBtn = document.getElementById('btnRegras'); 
@@ -63,11 +41,9 @@ if (regrasBtn) {
 // Função para abrir o modal
 
 function abrirModal() {
-    const modal = document.getElementById('RegrasModal');
-    const modalBody = document.getElementById('modal-body');
-    // Copia o conteúdo das regras para dentro do modal
-    modalBody.innerHTML = document.getElementById('regras-content').innerHTML;
-    modal.style.display = 'flex';
+// const modal = document.getElementById('RegrasModal');
+const modal = document.getElementById('RegrasIframe').src = 'Pages/Regras.html';//  
+  if (modal) modal.style.display = 'flex';
 }
 
 // Função para fechar o modal
@@ -112,6 +88,7 @@ const secretBtn = document.getElementById('secretLifeBtn');
 if (secretBtn) {
     secretBtn.addEventListener('click', ganharVidaExtra);
 }
+
 
 // ==================== VARIÁVEIS GLOBAIS ====================
 let scriptAtivo = false;
@@ -212,14 +189,16 @@ function atualizarInterface() {
     }
 
     // Game over
-    if (vidas <= 0) {
-//.............................................................................................
- const novoRecorde = salvarRecorde(pontuacao);
+  //  if (vidas <= 0) {
+   if (vidas <= 0) {
+    const novoRecorde = salvarRecorde(pontuacao);
     if (novoRecorde) {
         alert(`🎉 PARABÉNS! NOVO RECORDE: ${pontuacao} pontos! 🎉`);
     }
-//.............................................................................................    
-    if (timerCor) clearInterval(timerCor);
+    // ... resto do código (fim de jogo)
+
+   //........................................................................................
+   if (timerCor) clearInterval(timerCor);
         status4.innerText = 'Fim de jogo!';
         status5.innerText = `Você fez ${pontuacao} pontos. Parabéns!`;
         pontuacao = 0;
@@ -293,7 +272,7 @@ function trocarCor() {
     corAtual = lista[indice].trim();
     textoCor.innerText = corAtual;
 
-    // Muda a cor da área    
+    // Muda a cor da área
     switch(corAtual) {
         case 'Verde': areaCor.style.backgroundColor = '#2e7d32'; break;
         case 'Fucsia': areaCor.style.backgroundColor = '#9c27b0'; break;
@@ -332,7 +311,7 @@ function processarAcerto(tipo) {
     if (btn) {
         btn.style.transform = 'scale(0.95)';
         const originalBg = btn.style.backgroundColor;
-        btn.style.backgroundColor = acertou ? '#2e7d00;' : '#9c2700';  // '#81c784' : '#e57373';
+        btn.style.backgroundColor = acertou ? '#81c784' : '#e57373';
         setTimeout(() => {
             btn.style.transform = '';
             btn.style.backgroundColor = originalBg;
@@ -395,20 +374,19 @@ function pararAnimacoes() {
 }
 
 // ==================== CONTROLES DO JOGO ====================
+//function iniciarJogo() {
+//................................................................................................
 function iniciarJogo() {
-//..................................................................................
     // Ativa tela cheia (se ainda não estiver)
     const elem = document.documentElement;
     if (elem.requestFullscreen) {
         elem.requestFullscreen();
     } else if (elem.webkitRequestFullscreen) { // Safari
         elem.webkitRequestFullscreen();
-   //°  }
+    }
 
-    // ... resto do código do iniciarJogo (pontuação, timers, etc.)
-}
-//.................................................................................. 
- if (timerCor) clearInterval(timerCor);
+   //................................................................................................  
+  if (timerCor) clearInterval(timerCor);
     scriptAtivo = true;
     scriptPausado = false;
     status1.innerText = 'Jogo iniciado.';
@@ -455,7 +433,6 @@ function reiniciarJogo() {
     vidas = 3;
     faseAtual = 1;
     ultimoBonusVida = 0;
-  //   ultimaCorPremiada = '';
     tempoTroca = 1000;
     textoPontuacao.innerText = pontuacao;
     textoVidas.innerText = criarCoracoes(vidas);
@@ -467,7 +444,6 @@ function reiniciarJogo() {
     corAtual = 'Nenhuma';
     textoCor.innerText = '---';
     areaCor.style.backgroundColor = '#888';
-//    status1.innerText = 'Jogo reiniciado.';
     status2.innerText = 'Clique em Iniciar!';
     status4.innerText = '';
     status5.innerText = '';
@@ -492,9 +468,9 @@ function sairJogo() {
     status1.innerText = 'Script encerrado.';
     status2.innerText = 'Feche a página para sair completamente.';
 }
-//.................................................................................
-//function toggleTelaCheia() {
-function telaCheia() {  
+
+//..............................................................
+function toggleTelaCheia() {
     if (document.fullscreenElement) {
         document.exitFullscreen();
         // Ao sair da tela cheia, mostra o recorde (opcional)
@@ -503,14 +479,7 @@ function telaCheia() {
         document.documentElement.requestFullscreen();
     }
 }
-//.................................................................................
-/*
-function telaCheia() {
-    if (document.documentElement.requestFullscreen) {
-        document.documentElement.requestFullscreen();
-    }
-}
-*/
+//...............................................................
 function ganharVidaExtra() {
     if (vidas < 5) {
         vidas++;
@@ -523,7 +492,7 @@ function ganharVidaExtra() {
         setTimeout(() => { if (status3.innerText === 'Vidas no máximo!') status3.innerText = ''; }, 800);
     }
 }
-//..........................................................................................................................
+//..........................................................................................
 // Salva a maior pontuação no navegador
 function salvarRecorde(pontos) {
     let recorde = localStorage.getItem('recordeCores') || 0;
@@ -535,16 +504,52 @@ function salvarRecorde(pontos) {
 }
 
 // Lê o recorde salvo
+
 function obterRecorde() {
     return localStorage.getItem('recordeCores') || 0;
 }
 
 // Mostra o recorde num alerta ou modal (pode ser um modal simples)
+
 function mostrarRecorde() {
     const recorde = obterRecorde();
-    alert(`🏆 MAIOR PONTUAÇÃO: ${recorde} pontos!`);
+    document.getElementById('recordeValor').innerText = recorde;
+    document.getElementById('recordeModal').style.display = 'flex';
 }
-//..........................................................................................................................
+
+
+//...............................................................................
+
+// Fechar modal de recorde ao clicar no X
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Elementos do modal de recorde
+    const recordeModal = document.getElementById('recordeModal');
+    const closeRecordeX = document.getElementById('closeRecordeModal');
+    const closeRecordeBtn = document.getElementById('fecharRecordeBtn');
+
+    // Fechar ao clicar no X
+    if (closeRecordeX) {
+        closeRecordeX.addEventListener('click', function() {
+            recordeModal.style.display = 'none';
+        });
+    }
+
+    // Fechar ao clicar no botão Fechar
+    if (closeRecordeBtn) {
+        closeRecordeBtn.addEventListener('click', function() {
+            recordeModal.style.display = 'none';
+        });
+    }
+
+    // (Opcional) Fechar ao clicar fora do modal
+    window.addEventListener('click', function(e) {
+        if (e.target === recordeModal) {
+            recordeModal.style.display = 'none';
+        }
+    });
+});
+
 // ==================== EVENTOS ====================
 
 btnIniciar.addEventListener('click', iniciarJogo);
@@ -552,7 +557,7 @@ btnPausar.addEventListener('click', pausarJogo);
 btnReiniciar.addEventListener('click', reiniciarJogo);
 btnZerar.addEventListener('click', zerarPontuacao);
 //btnSair.addEventListener('click', sairJogo);
-btnTelaCheia.addEventListener('click', telaCheia);
+btnTelaCheia.addEventListener('click', toggleTelaCheia);
 btnPgUp.addEventListener('click', () => processarAcerto('PgUp'));
 btnPgUp.addEventListener('touchstart', (e) => {
     e.preventDefault();  // evita zoom ou rolagem
