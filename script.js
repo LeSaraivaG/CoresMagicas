@@ -26,12 +26,10 @@ const btnIniciar = document.getElementById('btnIniciar');
 const btnPausar = document.getElementById('btnPausar');
 const btnReiniciar = document.getElementById('btnReiniciar');
 const btnZerar = document.getElementById('btnZerar');
-//const btnSair = document.getElementById('btnSair');
-const btnTelaCheia = document.getElementById('btnTelaCheia');
+const btnPlacar= document.getElementById('btnPlacar');
 const btnPgUp = document.getElementById('btnPgUp');
 const btnPgDn = document.getElementById('btnPgDn');
 
-//00000000000000000000000000000000
 // Para o botão Regras
 const regrasBtn = document.getElementById('btnRegras'); 
 if (regrasBtn) {
@@ -66,7 +64,6 @@ window.addEventListener('click', (e) => {
     }
 });
 
-//0000000000000000000000000000000000
 // Sons (não reutilizar o mesmo objeto)
 function tocarSom(arquivo) {
     const audio = new Audio(arquivo);
@@ -74,7 +71,6 @@ function tocarSom(arquivo) {
 // Pré-carregar sons (cache)
 const sons = ['Pistom.mp3', 'Eita.mp3', 'Garotinha.mp3', 'Vitoria.mp3', 'Tam-tam.mp3'];
 sons.forEach(s => { const a = new Audio(s); a.load(); });
-//00000000000000000000000000000000000
 
 // Sons   
 ///const somAcerto = new Audio('Pistom.mp3');
@@ -112,8 +108,6 @@ const anim2_emojis = ['🐉', '🐍'];
 let anim2_idx = 0;
 const anim3_emojis = ['❤️', '💖', '💗', '💓', '💕'];
 let anim3_idx = 0;
-//const anim4_emojis = ['❤️', '💖', '💗', '💓', '💕'];
-//let anim4_idx = 0;
 const anim5_emojis = [' ', '👉🏻'];
 let anim5_idx = 0;
 
@@ -195,7 +189,6 @@ function atualizarInterface() {
     if (novoRecorde) {
         alert(`🎉 PARABÉNS! NOVO RECORDE: ${pontuacao} pontos! 🎉`);
     }
-    // ... resto do código (fim de jogo)
 
    //........................................................................................
    if (timerCor) clearInterval(timerCor);
@@ -287,7 +280,6 @@ function trocarCor() {
         default: areaCor.style.backgroundColor = '#888';
     }
 }
-//...............................................................................
 //...............................................................................
 function processarAcerto(tipo) {
     if (!scriptAtivo || scriptPausado) return false;
@@ -470,14 +462,14 @@ function sairJogo() {
 }
 
 //..............................................................
-function toggleTelaCheia() {
-    if (document.fullscreenElement) {
-        document.exitFullscreen();
+function togglePlacar() {
+//   if (document.fullscreenElement) {
+ //       document.exitFullscreen();
         // Ao sair da tela cheia, mostra o recorde (opcional)
         mostrarRecorde();
-    } else {
-        document.documentElement.requestFullscreen();
-    }
+//    } else {
+ //       document.documentElement.requestFullscreen();
+ //   }
 }
 //...............................................................
 function ganharVidaExtra() {
@@ -517,9 +509,6 @@ function mostrarRecorde() {
     document.getElementById('recordeModal').style.display = 'flex';
 }
 
-
-//...............................................................................
-
 // Fechar modal de recorde ao clicar no X
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -527,7 +516,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const recordeModal = document.getElementById('recordeModal');
     const closeRecordeX = document.getElementById('closeRecordeModal');
     const closeRecordeBtn = document.getElementById('fecharRecordeBtn');
-
     // Fechar ao clicar no X
     if (closeRecordeX) {
         closeRecordeX.addEventListener('click', function() {
@@ -547,6 +535,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (e.target === recordeModal) {
             recordeModal.style.display = 'none';
         }
+    
     });
 });
 
@@ -556,8 +545,7 @@ btnIniciar.addEventListener('click', iniciarJogo);
 btnPausar.addEventListener('click', pausarJogo);
 btnReiniciar.addEventListener('click', reiniciarJogo);
 btnZerar.addEventListener('click', zerarPontuacao);
-//btnSair.addEventListener('click', sairJogo);
-btnTelaCheia.addEventListener('click', toggleTelaCheia);
+btnPlacar.addEventListener('click', togglePlacar);
 btnPgUp.addEventListener('click', () => processarAcerto('PgUp'));
 btnPgUp.addEventListener('touchstart', (e) => {
     e.preventDefault();  // evita zoom ou rolagem
