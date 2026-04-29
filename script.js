@@ -463,13 +463,13 @@ function sairJogo() {
 
 //..............................................................
 function togglePlacar() {
-//   if (document.fullscreenElement) {
- //       document.exitFullscreen();
+   if (document.fullscreenElement) {
+       document.exitFullscreen();
         // Ao sair da tela cheia, mostra o recorde (opcional)
         mostrarRecorde();
-//    } else {
- //       document.documentElement.requestFullscreen();
- //   }
+    } else {
+        document.documentElement.requestFullscreen();
+   }
 }
 //...............................................................
 function ganharVidaExtra() {
