@@ -62,7 +62,7 @@ body {
 .regras-btn {
    color: white; 
     font-size: 0.8rem; 
-
+/* } */
     cursor: pointer;
     background-color: rgba( 0, 0, 0, 0.4);
     border-radius: 40px;
