@@ -30,6 +30,8 @@ const btnPlacar= document.getElementById('btnPlacar');
 const btnPgUp = document.getElementById('btnPgUp');
 const btnPgDn = document.getElementById('btnPgDn');
 
+//00000000000000000000000000000000
+//00000000000000000000000000000000
 // Para o botão Regras
 const regrasBtn = document.getElementById('btnRegras'); 
 if (regrasBtn) {
@@ -39,9 +41,11 @@ if (regrasBtn) {
 // Função para abrir o modal
 
 function abrirModal() {
-// const modal = document.getElementById('RegrasModal');
-const modal = document.getElementById('RegrasIframe').src = 'Pages/Regras.html';//  
-  if (modal) modal.style.display = 'flex';
+    const modal = document.getElementById('RegrasModal');
+    const modalBody = document.getElementById('modal-body');
+    // Copia o conteúdo das regras para dentro do modal
+    modalBody.innerHTML = document.getElementById('regras-content').innerHTML;
+    modal.style.display = 'flex';
 }
 
 // Função para fechar o modal
@@ -64,6 +68,8 @@ window.addEventListener('click', (e) => {
     }
 });
 
+//0000000000000000000000000000000000
+//ooooooooooooooooooooooooooooooooooooo
 // Sons (não reutilizar o mesmo objeto)
 function tocarSom(arquivo) {
     const audio = new Audio(arquivo);

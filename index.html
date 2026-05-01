@@ -7,13 +7,13 @@
     <title>Cores Mágicas</title>
 <link rel="manifest" href="manifest.json">    
    <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/ico" href="CoMaLaCom.ico">
-    <link rel="apple-touch-icon" href="CoMaLaCom.ico>   
+    <link rel="icon" type="image/ico" href="Espr3.ico">
+    <link rel="apple-touch-icon" href="Espr3.ico>   
     <meta name="theme-color" content="#4B0082">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Cores Mágicas">
-<!--  "Espr1.png> -->
+<!--  "Espr1.png>   CoMaLaCom.ico -->   
 </head>
 <body>
 <!--  
@@ -82,7 +82,7 @@
             <img id="gifAnimado" src="Darwin.gif" alt="gif" class="gif-anim">
             <div id="indicador3" class="emoji-anim">❤️</div>
        <div id="indicador5" class="emoji-anim">👉🏻</div>
-   <div id="btnRegras" class="regras-btn">Regras</div>
+  <div id="btnRegras" class="regras-btn">Regras</div>
 </div>
 
         <!-- Fase info - Nome da fase e ícone -->
@@ -113,14 +113,17 @@
     </div>
 </div>
 <!-- ....................................................................................... -->
-    <!-- Modal (popup) para o Regras -->
+      <!-- Modal (popup) para o Regras -->
+  
 <div id="RegrasModal" class="modal">
     <div class="modal-content">
-        <span class="close-modal">&times;</span>
-        <div id="modal-body"></div>
+ <!--        <span class="close-modal">&times;</span> -->
+<span class="close-modal" onclick="document.getElementById('RegrasModal').style.display='none'">&times;</span>  
+  <div id="modal-body"></div>
     </div>
 </div>
 
+<!-- ooooooooooooooooooooooooooooooooooooooooooooooo-->
 <!-- Conteúdo das regras (oculto) -->
 <div id="regras-content" style="display:none;">
 <!-- ===============================================================  -->
@@ -156,7 +159,8 @@
      <strong> ----------------------------------------</p>
      <p>🔄 <strong> Botões:</p>
      <p>✅  </strong> Reiniciar: recomeça do zero;</p>
-     <p>✅  </strong> Zerar: zera apenas os pontos (mantém fase e vidas);</p>
+     
+     <p>✅  </strong> Tela Placar: Tem duas funções; entrar e sair de tela cheia, além de mostrar o placar de Recorde do jogo;</p>
      <p>✅  </strong> e em algum lugar, o botão secreto 🎯 para vidas extras (até o máximo de cinco).</p>
         </strong> =======================</p>
       <p>📌  </strong> Obs.:

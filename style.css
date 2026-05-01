@@ -309,7 +309,7 @@ h1 {
 }
 /* Caixa de conteúdo do modal */
 .modal-content {
-    background-color: black;  /*  #fefefe;  #4B0082;  fundo roxo igual ao antigo Regras.html */
+    background-color: black; 
     margin: auto;
     padding: 20px;
     border-radius: 24px;   /* 30px; */
