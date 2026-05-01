@@ -75,7 +75,7 @@ function tocarSom(arquivo) {
     const audio = new Audio(arquivo);
     audio.play().catch(e => console.log('Erro ao tocar som:', e));}
 // Pré-carregar sons (cache)
-const sons = ['Pistom.mp3', 'Eita.mp3', 'Garotinha.mp3', 'Vitoria.mp3', 'Tam-tam.mp3'];
+const sons = ['Pistom.mp3', 'Eita.mp3', 'Garotinha.mp3', 'Vitoria.mp3', 'Tam-tam.mp3', 'laser.mp3'];
 sons.forEach(s => { const a = new Audio(s); a.load(); });
 
 // Sons   
@@ -84,8 +84,9 @@ sons.forEach(s => { const a = new Audio(s); a.load(); });
 //const somPassouFase = new Audio('Garotinha.mp3');
 //const somBonusVida = new Audio('Tam-tam.mp3');
 //const somVidaExtra = new Audio('Vitoria.mp3');
+//const somRecorde = new Audio('laser.mp3');
 
-// Para a estrela secreta
+// Para a estrela secreta      laser.mp3
 const secretBtn = document.getElementById('secretLifeBtn');
 if (secretBtn) {
     secretBtn.addEventListener('click', ganharVidaExtra);
@@ -321,6 +322,9 @@ function processarAcerto(tipo) {
         tocarSom('Pistom.mp3');
         atualizarInterface();
         console.log(`Acertou! Pontos: ${pontuacao}`);
+//nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+ verificarNovoRecorde(pontuacao);
+ //uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
         return true;
     } else {
         vidas--;
@@ -544,7 +548,41 @@ document.addEventListener('DOMContentLoaded', function() {
     
     });
 });
-
+//oooooooooooooooooooooooooooooooooooooooooooooooooooooo
+// Função para verificar se bateu o recorde
+function verificarNovoRecorde(pontos) {
+    let recorde = localStorage.getItem('recordeCores') || 0;
+    if (pontos > recorde) {
+        // Toca o som de novo recorde
+        tocarSom('laser.mp3');  // ou 'Recorde.mp3' se você adicionar um arquivo específico
+        
+        // Salva o novo recorde
+        localStorage.setItem('recordeCores', pontos);
+        
+        // Mostra mensagem na tela (opcional)
+        const msg = document.createElement('div');
+        msg.innerText = '🎉 NOVO RECORDE! 🎉';
+        msg.style.position = 'fixed';
+        msg.style.top = '50%';
+        msg.style.left = '50%';
+        msg.style.transform = 'translate(-50%, -50%)';
+        msg.style.backgroundColor = 'gold';
+        msg.style.color = '#4B0082';
+        msg.style.padding = '20px';
+        msg.style.borderRadius = '50px';
+        msg.style.fontSize = '2rem';
+        msg.style.fontWeight = 'bold';
+        msg.style.zIndex = '9999';
+        msg.style.textAlign = 'center';
+        msg.style.boxShadow = '0 0 20px black';
+        document.body.appendChild(msg);
+        setTimeout(() => msg.remove(), 2000);
+        
+        return true;
+    }
+    return false;
+}
+//uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
 // ==================== EVENTOS ====================
 
 btnIniciar.addEventListener('click', iniciarJogo);
