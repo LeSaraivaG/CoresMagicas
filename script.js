@@ -310,7 +310,7 @@ function processarAcerto(tipo) {
     if (btn) {
         btn.style.transform = 'scale(0.95)';
         const originalBg = btn.style.backgroundColor;
-        btn.style.backgroundColor = acertou ? '#81c784' : '#e57373';
+        btn.style.backgroundColor = acertou ? '#9c27b0' : '#009999';
         setTimeout(() => {
             btn.style.transform = '';
             btn.style.backgroundColor = originalBg;
